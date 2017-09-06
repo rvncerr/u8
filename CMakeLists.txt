@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.0)
+project(u8)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+add_library(u8 OBJECT u8.c)
+add_library(u8_shared SHARED $<TARGET_OBJECTS:u8>)
+add_library(u8_static STATIC $<TARGET_OBJECTS:u8>)
+set_target_properties(u8_shared PROPERTIES OUTPUT_NAME u8)
+set_target_properties(u8_static PROPERTIES OUTPUT_NAME u8)
