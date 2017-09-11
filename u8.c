@@ -29,7 +29,7 @@ int u8_rune_length(const char *p) {
 	return -1;
 }
 
-void u8_make_valid(char *s) {
+void u8_sanitize(char *s) {
 	char *p = s;
 	for(;;) {
 		int rune_length = u8_rune_length(p);

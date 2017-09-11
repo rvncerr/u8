@@ -2,6 +2,6 @@
 #define U8_H
 
 int u8_rune_length(const char *p);
-void u8_make_valid(char *s);
+void u8_sanitize(char *s);
 
 #endif
