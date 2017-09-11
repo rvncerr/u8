@@ -29,6 +29,10 @@ int u8_rune_length(const char *p) {
 	return -1;
 }
 
+bool u8_rune_is_valid(const char *p) {
+	return u8_rune_length(p) != -1;
+}
+
 void u8_sanitize(char *s) {
 	char *p = s;
 	for(;;) {
