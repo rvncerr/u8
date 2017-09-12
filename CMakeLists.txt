@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 2.8)
 project(u8)
-set(CMAKE_C_STANDARD 11)
+#set(CMAKE_C_STANDARD 11)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+add_compile_options(-std=c11)
 
 add_library(u8 OBJECT u8.c)
 add_library(u8_shared SHARED $<TARGET_OBJECTS:u8>)
