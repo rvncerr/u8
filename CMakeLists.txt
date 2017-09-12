@@ -9,5 +9,5 @@ add_library(u8_static STATIC $<TARGET_OBJECTS:u8>)
 set_target_properties(u8_shared PROPERTIES OUTPUT_NAME u8)
 set_target_properties(u8_static PROPERTIES OUTPUT_NAME u8)
 
-add_executable(u8_cunit u8_cunit.c $<TARGET_OBJECTS:u8>)
-target_link_libraries(u8_cunit cunit)
+#add_executable(u8_cunit u8_cunit.c $<TARGET_OBJECTS:u8>)
+#target_link_libraries(u8_cunit cunit)
