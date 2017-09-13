@@ -29,6 +29,23 @@ int u8_rune_length(const char *p) {
 	return -1;
 }
 
+int u8_rune_length_xml(const char *p) {
+	int length = u8_rune_length(p);
+	if(length == 1) {
+		if(*p == '\x09') return 1;
+		if(*p == '\x0a') return 1;
+		if(*p == '\x0d') return 1;
+		if(*p >= '\x20') return 1;
+		return -1;
+	}
+	if(length == 2) {
+		if(*p <= '\xd7') return 2;
+		if(*p >= '\xe0') return 2;
+		return -1;
+	}
+	return length;
+}
+
 bool u8_rune_is_valid(const char *p) {
 	return u8_rune_length(p) != -1;
 }
@@ -37,6 +54,16 @@ void u8_sanitize(char *s) {
 	char *p = s;
 	for(;;) {
 		int rune_length = u8_rune_length(p);
+		if(rune_length > 0) p += rune_length;
+		else if(rune_length == 0) break;
+		else { *p = ' '; p++; }
+	}
+}
+
+void u8_sanitize_xml(char *s) {
+	char *p = s;
+	for(;;) {
+		int rune_length = u8_rune_length_xml(p);
 		if(rune_length > 0) p += rune_length;
 		else if(rune_length == 0) break;
 		else { *p = ' '; p++; }
