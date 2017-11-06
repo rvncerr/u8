@@ -1,4 +1,7 @@
 language: c
+addons:
+  apt:
+    - libcunit1 libcunit1-dev
 script:
   - cmake .
   - make
