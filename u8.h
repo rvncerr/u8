@@ -12,8 +12,8 @@ int u8_length     (const char *s);
 
 int u8_rune_length_xml(const char *p);
 
-#define U8_SANITIZE_UTF8
-#define U8_SANITIZE_XML
+#define U8_SANITIZE_UTF8 0
+#define U8_SANITIZE_XML  1
 void u8_sanitize(char *s, int how);
 
 #endif
