@@ -31,17 +31,12 @@ int u8_rune_length(const char *p) {
 
 int u8_rune_length_xml(const char *p) {
 	int length = u8_rune_length(p);
+	if(length == -1) return -1;
 	if(length == 1) {
-		if(*p == '\x09') return 1;
-		if(*p == '\x0a') return 1;
-		if(*p == '\x0d') return 1;
-		if(*p >= '\x20') return 1;
-		return -1;
+		if(*p != '\x09' && *p != '\x0a' && *p != '\x0d' && *p < '\x20') return -1;
 	}
-	if(length == 2) {
-		if(*p <= '\xd7') return 2;
-		if(*p >= '\xe0') return 2;
-		return -1;
+	if(length == 3) {
+		if(*p == '\xef' && *(p+1) == '\xbf' && ((*(p+2) == '\xbe') || (*(p+2) == '\xbf'))) return -1;
 	}
 	return length;
 }
