@@ -29,17 +29,16 @@ int u8_rune_length(const char *p) {
 	return -1;
 }
 
-bool u8_rune_is_valid(const char *p) {
-	return u8_rune_length(p) != -1;
+int u8_length(const char *s) {
+	const char *p = s;
+	int length = 0;
+	for (;;) {
+		int rune_length = u8_rune_length(p);
+		if(rune_length < 0) return -1;
+		if(rune_length == 0) break;
+		length += rune_length;
+	}
+	return length;
 }
 
-void u8_sanitize(char *s) {
-	char *p = s;
-	for(;;) {
-		int rune_length = u8_rune_length(p);
-		if(rune_length > 0) p += rune_length;
-		else if(rune_length == 0) break;
-		else { *p = ' '; p++; }
-	}
-}
 

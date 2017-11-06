@@ -11,17 +11,4 @@ int u8_rune_length_xml(const char *p) {
 	return length;
 }
 
-bool u8_rune_is_valid_xml(const char *p) {
-	return u8_rune_length_xml(p) != -1;
-}
-
-void u8_sanitize_xml(char *s) {
-	char *p = s;
-	for(;;) {
-		int rune_length = u8_rune_length_xml(p);
-		if(rune_length > 0) p += rune_length;
-		else if(rune_length == 0) break;
-		else { *p = ' '; p++; }
-	}
-}
 
