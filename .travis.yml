@@ -1,7 +1,7 @@
 language: c
-addons:
-  apt:
-    - libcunit1 libcunit1-dev
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libcunit1 libcunit1-dev
 script:
   - cmake .
   - make
