@@ -29,16 +29,46 @@ int u8_rune_length(const char *p) {
 	return -1;
 }
 
+int u8_rune_compare(const char *rune1, const char *rune2) {
+	int rune1_length = u8_rune_length(rune1);
+	int rune2_length = u8_rune_length(rune2);
+
+	if(rune1_length == rune2_length) {
+		for(int i = 0; i < rune1_length; i++) {
+			if(rune1[i] != rune1[i]) {
+				return rune1[i] < rune2[i] ? -1 : 1;
+			}
+		}
+		return 0;
+	} else {
+		return rune1_length < rune2_length ? -1 : 1;
+	}
+}
+
+char *u8_rune_find(const char *s, const char *rune) {
+	const char *p = s;
+	for(;;) {
+		int p_length = u8_rune_length(p);
+
+		if(p_length < 0) return NULL;
+		if(p_length == 0) return NULL;
+		if(u8_rune_compare(p, rune) == 0) return p;
+		
+		p += p_length;
+	}
+}
+
 int u8_length(const char *s) {
 	const char *p = s;
 	int length = 0;
-	for (;;) {
+	for(;;) {
 		int rune_length = u8_rune_length(p);
 		if(rune_length < 0) return -1;
 		if(rune_length == 0) break;
-		length += rune_length;
+
+		p += rune_length;
+		length++;
 	}
 	return length;
 }
-
 
