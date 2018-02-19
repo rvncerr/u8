@@ -13,6 +13,8 @@ int u8_rune(const char *s, const char *rune);
 
 int u8_length(const char *s);
 
+const char *u8_find_rune(const char *s, const char *rune);
+
 // With respect to http://www.xml.com/axml/testaxml.htm
 // Please, see Chapter 2.2.
 
