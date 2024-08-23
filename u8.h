@@ -11,13 +11,6 @@ int u8_length(const char *s);
 
 const char *u8_find_rune(const char *s, const char *rune);
 
-// With respect to http://www.xml.com/axml/testaxml.htm
-// Please, see Chapter 2.2.
-
-int u8_rune_length_xml(const char *p);
-
-#define U8_SANITIZE_UTF8 0
-#define U8_SANITIZE_XML  1
-void u8_sanitize(char *s, int how);
+void u8_sanitize(char *s);
 
 #endif

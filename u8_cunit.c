@@ -9,9 +9,6 @@ void test_u8_rune_length() {
 	CU_ASSERT(-1 == u8_rune_length("\xc1\x00\x00\x00"));
 }
 
-void test_u8_rune_length_xml() {
-}
-
 void test_u8_find_rune() {
 	const char *source1 = "0123456789abcdef";
 	CU_ASSERT(source1      == u8_find_rune(source1, "0"));
@@ -60,7 +57,6 @@ int main(int argc, char **argv) {
 	pSuite = CU_add_suite("Runes", NULL, NULL);
 	if(NULL == pSuite) { CU_cleanup_registry(); return CU_get_error(); }
 	if(NULL == CU_add_test(pSuite, "u8_rune_length", test_u8_rune_length)) { CU_cleanup_registry(); return CU_get_error(); }
-	if(NULL == CU_add_test(pSuite, "u8_rune_length_xml", test_u8_rune_length_xml)) { CU_cleanup_registry(); return CU_get_error(); }
 
 	if(NULL == CU_add_test(pSuite, "u8_find_rune", test_u8_find_rune)) { CU_cleanup_registry(); return CU_get_error(); }
 
