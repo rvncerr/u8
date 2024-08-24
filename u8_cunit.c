@@ -50,6 +50,16 @@ void test_u8_find_rune() {
 	CU_ASSERT(NULL         == u8_find_rune(source2, "g"));
 }
 
+void test_u8_loop() {
+	const char *source = "Hello, world! Привет, мир!";
+
+	int counter = 0;
+	for(const char *r = source; !u8_end(r); r = u8_next(r)) {
+		counter++;
+	}
+	CU_ASSERT(counter == 26);
+}
+
 int main(int argc, char **argv) {
 	CU_pSuite pSuite = NULL;
 	if(CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
@@ -59,6 +69,10 @@ int main(int argc, char **argv) {
 	if(NULL == CU_add_test(pSuite, "u8_rune_length", test_u8_rune_length)) { CU_cleanup_registry(); return CU_get_error(); }
 
 	if(NULL == CU_add_test(pSuite, "u8_find_rune", test_u8_find_rune)) { CU_cleanup_registry(); return CU_get_error(); }
+
+	pSuite = CU_add_suite("Loop", NULL, NULL);
+	if(NULL == pSuite) { CU_cleanup_registry(); return CU_get_error(); }
+	if(NULL == CU_add_test(pSuite, "u8_loop", test_u8_loop)) { CU_cleanup_registry(); return CU_get_error(); }
 
 	CU_basic_set_mode(CU_BRM_VERBOSE);
 	CU_basic_run_tests();
