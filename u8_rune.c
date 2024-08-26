@@ -34,20 +34,3 @@ int u8_rune_length(const char *r) {
 		&& *(r+3) >= '\x80' && *(r+3) <= '\xbf') return 4;
 	return -1;
 }
-
-int u8_rune_compare(const char *r1, const char *r2) {
-	int r1_length = u8_rune_length(r1);
-	int r2_length = u8_rune_length(r2);
-
-	if(r1_length == r2_length) {
-		for(int i = 0; i < r1_length; i++) {
-			if(r1[i] != r2[i]) {
-				return r1[i] < r2[i] ? -1 : 1;
-			}
-		}
-		return 0;
-	} else {
-		return r1_length < r2_length ? -1 : 1;
-	}
-}
-
