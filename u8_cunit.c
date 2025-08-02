@@ -1,9 +1,7 @@
 #include "CUnit/Basic.h"
 #include "u8.h"
 
-void
-test_u8_rune_length()
-{
+void test_u8_rune_length() {
   CU_ASSERT(0 == u8_rune_length("\x00\x00\x00\x00"));
   CU_ASSERT(1 == u8_rune_length("\x01\x00\x00\x00"));
   CU_ASSERT(1 == u8_rune_length("\x7f\x00\x00\x00"));
@@ -11,10 +9,8 @@ test_u8_rune_length()
   CU_ASSERT(-1 == u8_rune_length("\xc1\x00\x00\x00"));
 }
 
-void
-test_u8_find_rune()
-{
-  const char* source1 = "0123456789abcdef";
+void test_u8_find_rune() {
+  const char *source1 = "0123456789abcdef";
   CU_ASSERT(source1 == u8_find_rune(source1, "0"));
   CU_ASSERT(source1 + 1 == u8_find_rune(source1, "1"));
   CU_ASSERT(source1 + 2 == u8_find_rune(source1, "2"));
@@ -33,7 +29,7 @@ test_u8_find_rune()
   CU_ASSERT(source1 + 15 == u8_find_rune(source1, "f"));
   CU_ASSERT(NULL == u8_find_rune(source1, "g"));
 
-  const char* source2 = "0123456789"
+  const char *source2 = "0123456789"
                         "\xc2\xa0"
                         "abcdef";
   CU_ASSERT(source2 == u8_find_rune(source2, "0"));
@@ -56,21 +52,17 @@ test_u8_find_rune()
   CU_ASSERT(NULL == u8_find_rune(source2, "g"));
 }
 
-void
-test_u8_loop()
-{
-  const char* source = "Hello, world! Привет, мир!";
+void test_u8_loop() {
+  const char *source = "Hello, world! Привет, мир!";
 
   int counter = 0;
-  for (const char* r = source; !u8_end(r); r = u8_next(r)) {
+  for (const char *r = source; !u8_end(r); r = u8_next(r)) {
     counter++;
   }
   CU_ASSERT(counter == 26);
 }
 
-int
-main(int argc, char** argv)
-{
+int main(int argc, char **argv) {
   CU_pSuite pSuite = NULL;
   if (CUE_SUCCESS != CU_initialize_registry())
     return CU_get_error();

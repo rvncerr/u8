@@ -1,9 +1,7 @@
 #include "u8.h"
 
-const char*
-u8_find_rune(const char* s, const char* rune)
-{
-  const char* p = s;
+const char *u8_find_rune(const char *s, const char *rune) {
+  const char *p = s;
 
   for (;;) {
     int p_length = u8_rune_length(p);
